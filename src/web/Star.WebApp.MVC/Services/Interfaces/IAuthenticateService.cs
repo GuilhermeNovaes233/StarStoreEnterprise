@@ -5,7 +5,7 @@ namespace Star.WebApp.MVC.Services
 {
     public interface IAuthenticateService
     {
-        Task<string> Login(UserLogin userLogin);
-        Task<string> Register(UserRegister userRegister);
+        Task<UserResponseLogin> Login(UserLogin userLogin);
+        Task<UserResponseLogin> Register(UserRegister userRegister);
     }
 }
