@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Star.WebApp.MVC.Controllers
 {
-    public class IdentityController : Controller
+    public class IdentityController : MainController
     {
 
         private readonly IAuthenticateService _authenticateService;
@@ -35,9 +35,8 @@ namespace Star.WebApp.MVC.Controllers
 
             var response = await _authenticateService.Register(userRegister);
 
-            if (false) return View(userRegister);
+            if (ExistsErrorsInResponse(response.ResponseResult)) return View(userRegister);
 
-            //Realizar Login
             await Login(response);
 
             return RedirectToAction("Index", "Home");
@@ -54,12 +53,10 @@ namespace Star.WebApp.MVC.Controllers
         {
             if (!ModelState.IsValid) return View(userLogin);
 
-            //API - Login
             var response = await _authenticateService.Login(userLogin);
 
-            //if (false) return View(userLogin);
+            if (ExistsErrorsInResponse(response.ResponseResult)) return View(userLogin);
 
-            //Realizar Login na APP
             await Login(response);
 
             return RedirectToAction("Index", "Home");

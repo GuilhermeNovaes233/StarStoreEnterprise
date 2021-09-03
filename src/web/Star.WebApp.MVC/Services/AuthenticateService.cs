@@ -1,4 +1,5 @@
-﻿using Star.WebApp.MVC.Models.User;
+﻿using Star.WebApp.MVC.Models;
+using Star.WebApp.MVC.Models.User;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Star.WebApp.MVC.Services
 {
-    public class AuthenticateService : IAuthenticateService
+    public class AuthenticateService : Service, IAuthenticateService
     {
         private readonly HttpClient _httpClient;
 
@@ -30,6 +31,14 @@ namespace Star.WebApp.MVC.Services
                 PropertyNameCaseInsensitive = true
             };
 
+            if (!HandleErrorsResponse(response))
+            {
+                return new UserResponseLogin()
+                {
+                    ResponseResult = JsonSerializer.Deserialize<ResponseResult>(await response.Content.ReadAsStringAsync(), options)
+                };
+            }
+
             return JsonSerializer.Deserialize<UserResponseLogin>(await response.Content.ReadAsStringAsync(), options);
         }
 
@@ -43,7 +52,20 @@ namespace Star.WebApp.MVC.Services
 
             var response = await _httpClient.PostAsync("https://localhost:44324/api/identity/new-account", registerContent);
 
-            return JsonSerializer.Deserialize<UserResponseLogin>(await response.Content.ReadAsStringAsync());
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            if (!HandleErrorsResponse(response))
+            {
+                return new UserResponseLogin()
+                {
+                    ResponseResult = JsonSerializer.Deserialize<ResponseResult>(await response.Content.ReadAsStringAsync(), options)
+                };
+            }
+
+            return JsonSerializer.Deserialize<UserResponseLogin>(await response.Content.ReadAsStringAsync(), options);
         }
     }
 }
