@@ -2,17 +2,6 @@
     StarStoreEnterprise
 </h1>
  
-<p align="center">
-	 <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&color=green&labelColor=000000" alt="PRs welcome!" />
-<img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=green&labelColor=000000">
-</p>
-
-<p align="center">
-  <a href="#beginner-sobre">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#fire-como-contribuir">Como contribuir</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#lock-licença">Licença</a>
-</p>
-
 Projeto desenvolvido com finalidade de estudos sobre DDD (Domain-Drovem Design) e Event Sourcing.
 
 > “Nós podemos buscar o estado de uma aplicação para encontrar o estado atual do mundo, e isso responde muitas perguntas. Entretanto há momentos que nós não só queremos ver onde nós estamos, mas também queremos saber como chegamos lá.”
