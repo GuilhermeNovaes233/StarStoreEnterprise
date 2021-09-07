@@ -30,8 +30,7 @@ namespace Star.WebApp.MVC.Controllers
         [HttpPost("new-account")]
         public async Task<IActionResult> Register(UserRegister userRegister)
         {
-            if (!ModelState.IsValid)
-                return View(userRegister);
+            if (!ModelState.IsValid) return View(userRegister);
 
             var response = await _authenticateService.Register(userRegister);
 

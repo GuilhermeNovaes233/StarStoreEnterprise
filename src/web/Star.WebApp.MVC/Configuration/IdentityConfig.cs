@@ -12,7 +12,7 @@ namespace Star.WebApp.MVC.Configuration
                 .AddCookie(options =>
                 {
                     options.LoginPath = "/login";
-                    options.AccessDeniedPath = "/acesso-negado";
+                    options.AccessDeniedPath = "/access-denied";
                 });
         }
 
