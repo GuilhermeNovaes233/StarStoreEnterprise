@@ -40,7 +40,7 @@ namespace Star.WebApp.MVC.Services
         public async Task<UserResponseLogin> Register(UserRegister userRegister)
         {
             var registerContent = GetContent(userRegister);
-
+            
             var response = await _httpClient.PostAsync("/api/identity/new-account", registerContent);
 
             if (!HandleErrorsResponse(response))
