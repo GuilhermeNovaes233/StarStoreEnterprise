@@ -1,5 +1,8 @@
-﻿@model Star.WebApp.MVC.Models.User.UserRegister
+﻿@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 
+@model Star.WebApp.MVC.Models.User.UserRegister
 @{
     ViewData["Title"] = "Registro";
 }
@@ -36,7 +39,7 @@
                 </div>
             </form>
         </div>
-        <div class="card-footer text-center">Já tem uma conta?<a asp-controller="Identity" asp-action="Login"> Entrar</a></div>
+        <div class="card-footer text-center">Já tem uma conta?<a asp-controller="Identidade" asp-action="Login"> Entrar</a></div>
     </div>
 
 </section>
