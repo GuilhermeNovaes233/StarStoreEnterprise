@@ -42,7 +42,7 @@ namespace Star.Catalog.API.Data.Repository
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _context?.Dispose();
         }
 
     }
