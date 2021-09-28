@@ -1,4 +1,4 @@
-﻿namespace Star.Identity.API.Extensions
+﻿namespace Star.WebApi.Core.Identity
 {
     public class AppSettings
     {

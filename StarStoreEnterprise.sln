@@ -13,35 +13,39 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{6A35FA78-4E2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{D5706244-888A-4B63-B849-260094E391A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Star.Identity.API", "src\services\Star.Identity.API\Star.Identity.API.csproj", "{4BA5A0BB-A9E9-4BA7-8782-9CDB538B672D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Star.Identity.API", "src\services\Star.Identity.API\Star.Identity.API.csproj", "{4BA5A0BB-A9E9-4BA7-8782-9CDB538B672D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVC", "MVC", "{1BC914A2-05B7-4766-AD9C-715B8F063344}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Star.WebApp.MVC", "src\web\Star.WebApp.MVC\Star.WebApp.MVC.csproj", "{78A45225-3B68-46E8-92A5-E08FAD1AF286}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Star.WebApp.MVC", "src\web\Star.WebApp.MVC\Star.WebApp.MVC.csproj", "{78A45225-3B68-46E8-92A5-E08FAD1AF286}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{98B4BE93-A99E-4EE7-82E3-6B95AEF5C4A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Star.Core", "src\building blocks\Star.Core\Star.Core.csproj", "{CECB6675-CFC1-44CF-B3FB-F8A0E3A551AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Star.Core", "src\building blocks\Star.Core\Star.Core.csproj", "{CECB6675-CFC1-44CF-B3FB-F8A0E3A551AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Order", "Order", "{A07151AC-2F45-490B-AE33-41003B1EE5A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Star.Order.API", "src\services\Star.Order.API\Star.Order.API.csproj", "{29991F17-1644-4291-AF66-7DBD74FB71D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Star.Order.API", "src\services\Star.Order.API\Star.Order.API.csproj", "{29991F17-1644-4291-AF66-7DBD74FB71D2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cart", "Cart", "{AD303A36-FA67-4E0C-8FB5-D8DF06F4B367}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Star.Cart.API", "src\services\Star.Cart.API\Star.Cart.API.csproj", "{88D36CE3-9A06-4DE2-9673-E754BEDDFEC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Star.Cart.API", "src\services\Star.Cart.API\Star.Cart.API.csproj", "{88D36CE3-9A06-4DE2-9673-E754BEDDFEC1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{6D0C4A99-BBEA-45EC-BD95-AD14029B093A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Star.Client.API", "src\services\Star.Client.API\Star.Client.API.csproj", "{F648F661-9A8C-42C3-BC00-E44FFAD30BDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Star.Client.API", "src\services\Star.Client.API\Star.Client.API.csproj", "{F648F661-9A8C-42C3-BC00-E44FFAD30BDD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{5DB95416-937D-4828-A129-910E886AD37A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Star.Catalog.API", "src\services\Star.Catalog.API\Star.Catalog.API.csproj", "{016AB425-660E-40A8-BA03-F0D175C43BC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Star.Catalog.API", "src\services\Star.Catalog.API\Star.Catalog.API.csproj", "{016AB425-660E-40A8-BA03-F0D175C43BC0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{338A85E7-E253-4304-8AED-24A0A7F5E770}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Star.Payment.API", "src\services\Star.Payment.API\Star.Payment.API.csproj", "{A732FE1E-C587-46D8-8CC4-0E7B201ECAA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Star.Payment.API", "src\services\Star.Payment.API\Star.Payment.API.csproj", "{A732FE1E-C587-46D8-8CC4-0E7B201ECAA1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B4297606-9ADF-4B70-9B85-A2BF8B3EFCC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Star.WebApi.Core", "src\building blocks\Star.WebApi.Core\Star.WebApi.Core.csproj", "{7A49F130-9C58-4BE0-86F5-608182E67E4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +85,10 @@ Global
 		{A732FE1E-C587-46D8-8CC4-0E7B201ECAA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A732FE1E-C587-46D8-8CC4-0E7B201ECAA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A732FE1E-C587-46D8-8CC4-0E7B201ECAA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A49F130-9C58-4BE0-86F5-608182E67E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A49F130-9C58-4BE0-86F5-608182E67E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A49F130-9C58-4BE0-86F5-608182E67E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A49F130-9C58-4BE0-86F5-608182E67E4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +113,8 @@ Global
 		{016AB425-660E-40A8-BA03-F0D175C43BC0} = {5DB95416-937D-4828-A129-910E886AD37A}
 		{338A85E7-E253-4304-8AED-24A0A7F5E770} = {EEBBC88C-C9A4-4E53-961B-F47C7BDAEC95}
 		{A732FE1E-C587-46D8-8CC4-0E7B201ECAA1} = {338A85E7-E253-4304-8AED-24A0A7F5E770}
+		{B4297606-9ADF-4B70-9B85-A2BF8B3EFCC0} = {6A310622-BD94-4326-BBF3-919FF8F358C0}
+		{7A49F130-9C58-4BE0-86F5-608182E67E4D} = {B4297606-9ADF-4B70-9B85-A2BF8B3EFCC0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {770E54FE-1C37-4BDA-8500-E4EBB1DA1BD0}

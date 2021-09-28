@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Star.Catalog.API.Configuration;
+using Star.WebApi.Core.Identity;
 
 namespace Star.Catalog.API
 {
@@ -30,6 +31,8 @@ namespace Star.Catalog.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApiConfiguration(Configuration);
+
+            services.AddJwtConfiguration(Configuration);
 
             services.AddSwaggerConfiguration();
 

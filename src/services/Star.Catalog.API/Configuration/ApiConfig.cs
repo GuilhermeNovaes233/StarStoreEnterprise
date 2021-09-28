@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Star.Catalog.API.Data;
+using Star.WebApi.Core.Identity;
 
 namespace Star.Catalog.API.Configuration
 {
@@ -30,7 +31,6 @@ namespace Star.Catalog.API.Configuration
             });
         }
 
-
         public static void UseApiConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -43,7 +43,7 @@ namespace Star.Catalog.API.Configuration
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthConfiguration();
 
             app.UseEndpoints(endpoints =>
             {
