@@ -20,14 +20,11 @@ namespace Star.Catalog.API.Configuration
 
             services.AddControllers();
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("Total",
-                    builder => builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                );
+            services.AddCors(options => {
+                options.AddPolicy("Total", builder =>
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
             });
         }
 
