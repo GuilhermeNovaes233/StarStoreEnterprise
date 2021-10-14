@@ -24,7 +24,7 @@ namespace Star.WebApp.MVC.Controllers
 
         [HttpGet]
         [Route("product-detail/{id}")]
-        public async Task<IActionResult> ProductDetail(Guid id)
+        public async Task<IActionResult> ProductDetails(Guid id)
         {
             var product = await _catalogService.GetById(id);
             return View(product);
