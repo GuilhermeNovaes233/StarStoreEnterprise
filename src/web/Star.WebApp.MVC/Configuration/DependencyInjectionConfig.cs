@@ -23,12 +23,11 @@ namespace Star.WebApp.MVC.Configuration
 
             services.AddHttpClient<IAuthenticateService, AuthenticateService>();
 
-
-           
-
             services.AddHttpClient<ICatalogService, CatalogService>()
                 .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
-                .AddPolicyHandler(PollyExtensions.WaitTry());
+                .AddPolicyHandler(PollyExtensions.WaitTry())
+                .AddTransientHttpErrorPolicy(p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
+
                 //.AddTransientHttpErrorPolicy(
                 //    p => p.WaitAndRetryAsync(3, _ => TimeSpan.FromMilliseconds(600)));
 

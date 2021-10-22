@@ -15,6 +15,20 @@ namespace Star.WebApp.MVC.Controllers
             return View();
         }
 
+        [Route("system-unavailable")]
+        public IActionResult SystemUnavailable()
+        {
+            var modelError = new ErrorViewModel
+            {
+                Message = "O Sistema esta temporariamente indisponível, isto pode ocorrer em momentos de sobrecarga de usuários",
+                Title = "SystemUnavailable",
+                ErroCode = 500
+            };
+
+            return View("Error", modelError);
+        }
+
+
         [Route("error/{id:length(3,3)}")]
         public IActionResult Error(int id)
         {
