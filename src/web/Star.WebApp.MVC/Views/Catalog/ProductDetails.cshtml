@@ -29,12 +29,12 @@
                                     </a>
 
                                     <small class="card-text">
-                                        @*@this.MensagemEstoque(product.QuantityStock)<br /><br />*@
+                                        @this.MessageStock(product.QuantityStock)<br /><br />
                                         @product.Description
                                     </small>
                                 </figcaption>
                                 <div class="card-footer price mt-1">
-                                    @*<h3>@this.FormatoMoeda(product.Value)</h3>*@
+                                    <h3>@this.FormatCoin(product.Value)</h3>
                                     <h3>@product.Value</h3>
                                 </div>
                             </div>
