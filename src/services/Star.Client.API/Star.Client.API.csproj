@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\building blocks\Star.Core\Star.Core.csproj" />
+	<ProjectReference Include="..\..\building blocks\Star.WebAPI.Core\Star.WebAPI.Core.csproj" />
   </ItemGroup>
 
 </Project>

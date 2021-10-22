@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Star.Client.API.Data
 {
-    public sealed class ClientsContext : DbContext, IUnitOfWork
+    public sealed class ClientContext : DbContext, IUnitOfWork
     {
-        public ClientsContext(DbContextOptions<ClientsContext> options)
+        public ClientContext(DbContextOptions<ClientContext> options)
             : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
@@ -27,7 +27,7 @@ namespace Star.Client.API.Data
             foreach (var relationship in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
 
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ClientsContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ClientContext).Assembly);
         }
 
         public async Task<bool> Commit()
