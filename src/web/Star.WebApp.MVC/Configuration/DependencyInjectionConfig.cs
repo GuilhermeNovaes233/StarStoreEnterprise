@@ -19,16 +19,16 @@ namespace Star.WebApp.MVC.Configuration
 
             services.AddHttpClient<IAuthenticateService, AuthenticateService>();
 
-            //services.AddHttpClient<ICatalogService, CatalogService>()
-            //    .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>();
+            services.AddHttpClient<ICatalogService, CatalogService>()
+                .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>();
 
-            services.AddHttpClient("Refit",
-                    options =>
-                    {
-                        options.BaseAddress = new Uri(configuration.GetSection("CatalogUrl").Value);
-                    })
-                .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
-                .AddTypedClient(Refit.RestService.For<ICatalogServiceRefit>);
+            //services.AddHttpClient("Refit",
+            //        options =>
+            //        {
+            //            options.BaseAddress = new Uri(configuration.GetSection("CatalogUrl").Value);
+            //        })
+            //    .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
+            //    .AddTypedClient(Refit.RestService.For<ICatalogServiceRefit>);
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUser, AspNetUser>();

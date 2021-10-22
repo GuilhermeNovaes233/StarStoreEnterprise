@@ -13,12 +13,12 @@ namespace Star.WebApp.MVC.Services.Interfaces
         Task<ProductViewModel> GetById(Guid id);
     }
 
-    public interface ICatalogServiceRefit
-    {
-        [Get("/catalog/products/")]
-        Task<IEnumerable<ProductViewModel>> GetAll();
+    //public interface ICatalogServiceRefit
+    //{
+    //    [Get("/catalog/products/")]
+    //    Task<IEnumerable<ProductViewModel>> GetAll();
 
-        [Get("/catalog/products/{id}")]
-        Task<ProductViewModel> GetById(Guid id);
-    }
+    //    [Get("/catalog/products/{id}")]
+    //    Task<ProductViewModel> GetById(Guid id);
+    //}
 }
