@@ -3,7 +3,7 @@ using System;
 
 namespace Star.Catalog.API.Models
 {
-    public class Product : Entity<Guid>, IAggregateRoot
+    public class Product : Entity, IAggregateRoot
     {
         public string Name { get; set; }
         public string Description { get; set; }
