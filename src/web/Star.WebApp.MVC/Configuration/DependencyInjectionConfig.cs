@@ -3,11 +3,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Polly.Extensions.Http;
+using Polly.Retry;
 using Star.WebApp.MVC.Extensions;
 using Star.WebApp.MVC.Services;
 using Star.WebApp.MVC.Services.Handlers;
 using Star.WebApp.MVC.Services.Interfaces;
 using System;
+using System.Net.Http;
 
 namespace Star.WebApp.MVC.Configuration
 {
@@ -22,22 +24,11 @@ namespace Star.WebApp.MVC.Configuration
             services.AddHttpClient<IAuthenticateService, AuthenticateService>();
 
 
-            var retryWaitPolicy = HttpPolicyExtensions
-                .HandleTransientHttpError()
-                .WaitAndRetryAsync(new[] {
-                    TimeSpan.FromSeconds(1),
-                    TimeSpan.FromSeconds(5),
-                    TimeSpan.FromSeconds(10),
-                },
-                onRetry: (outcome, timespan, retrycount, context) =>
-                {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine($"Tentando pela {retrycount} vez!");
-                }); 
+           
 
             services.AddHttpClient<ICatalogService, CatalogService>()
                 .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
-                .AddPolicyHandler(retryWaitPolicy);
+                .AddPolicyHandler(PollyExtensions.WaitTry());
                 //.AddTransientHttpErrorPolicy(
                 //    p => p.WaitAndRetryAsync(3, _ => TimeSpan.FromMilliseconds(600)));
 
@@ -52,6 +43,27 @@ namespace Star.WebApp.MVC.Configuration
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUser, AspNetUser>();
+        }
+    }
+
+    public class PollyExtensions
+    {
+        public static AsyncRetryPolicy<HttpResponseMessage> WaitTry()
+        {
+            var retry = HttpPolicyExtensions
+                .HandleTransientHttpError()
+                .WaitAndRetryAsync(new[] {
+                    TimeSpan.FromSeconds(1),
+                    TimeSpan.FromSeconds(5),
+                    TimeSpan.FromSeconds(10),
+                },
+                onRetry: (outcome, timespan, retrycount, context) =>
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine($"Tentando pela {retrycount} vez!");
+                });
+
+            return retry;
         }
     }
 }
