@@ -2,6 +2,9 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Star.Client.API.Application.Commands;
+using Star.Client.API.Data;
+using Star.Client.API.Data.Repository;
+using Star.Client.API.Models;
 using Star.Core.Mediator;
 
 namespace Star.Client.API.Configuration
@@ -12,6 +15,9 @@ namespace Star.Client.API.Configuration
         {
             services.AddScoped<IMediatorHandler, MediatorHandler>();
             services.AddScoped<IRequestHandler<RegisterClientCommand, ValidationResult>, ClientCommandHandler>();
+
+            services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<ClientContext>();
         }
     }
 }

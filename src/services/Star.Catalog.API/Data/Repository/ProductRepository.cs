@@ -17,9 +17,7 @@ namespace Star.Catalog.API.Data.Repository
             _context = context;
         }
 
-        public IUnitOfWork UnityOfWork => _context;
-
-
+        public IUnitOfWork UnitOfWork => _context;
         public async Task<IEnumerable<Product>> GetAll()
         {
             return await _context.Products.AsNoTracking().ToListAsync();
@@ -44,6 +42,5 @@ namespace Star.Catalog.API.Data.Repository
         {
             _context?.Dispose();
         }
-
     }
 }
