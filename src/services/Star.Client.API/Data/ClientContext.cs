@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Star.Client.API.Data
 {
-    public sealed class ClientContext : DbContext, IUnitOfWork
+    public class ClientContext : DbContext, IUnitOfWork
     {
         public ClientContext(DbContextOptions<ClientContext> options)
             : base(options)
@@ -32,8 +32,7 @@ namespace Star.Client.API.Data
 
         public async Task<bool> Commit()
         {
-            var success = await base.SaveChangesAsync() > 0;
-            return success;
+            return await base.SaveChangesAsync() > 0;
         }
     }
 }
