@@ -16,4 +16,8 @@
     <PackageReference Include="Refit" Version="6.1.15" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\building blocks\Star.Core\Star.Core.csproj" />
+  </ItemGroup>
+
 </Project>

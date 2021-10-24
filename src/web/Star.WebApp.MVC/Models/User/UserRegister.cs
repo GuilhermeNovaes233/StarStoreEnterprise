@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Star.WebApp.MVC.Extensions.Annotations;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Star.WebApp.MVC.Models.User
@@ -11,6 +12,7 @@ namespace Star.WebApp.MVC.Models.User
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [DisplayName("CPF")]
+        [Cpf]
         public string Cpf { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]

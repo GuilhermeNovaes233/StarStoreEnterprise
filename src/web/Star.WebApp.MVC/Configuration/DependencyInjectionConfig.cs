@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Polly.Extensions.Http;
 using Polly.Retry;
 using Star.WebApp.MVC.Extensions;
+using Star.WebApp.MVC.Extensions.Annotations;
 using Star.WebApp.MVC.Services;
 using Star.WebApp.MVC.Services.Handlers;
 using Star.WebApp.MVC.Services.Interfaces;
@@ -17,9 +19,9 @@ namespace Star.WebApp.MVC.Configuration
     {
         public static void RegisterServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddSingleton<IValidationAttributeAdapterProvider, CpfValidationAttributeAdapterProvider>();
 
             services.AddTransient<HttpClientAuthorizationDelegatingHandler>();
-
 
             services.AddHttpClient<IAuthenticateService, AuthenticateService>();
 
