@@ -1,6 +1,6 @@
 ﻿@model Star.WebApp.MVC.Models.User.UserRegister
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Registro";
 }
 
 <section class="section-conten padding-y container" style="min-height: 45vh">
