@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Star.Core.Messages;
+using System;
+using System.Collections.Generic;
 
 namespace Star.Core.DomainObjects
 {
@@ -6,6 +8,31 @@ namespace Star.Core.DomainObjects
     {
         public Guid Id { get; set; }
 
+        protected Entity()
+        {
+            Id = Guid.NewGuid();
+        }
+
+        private List<Event> _notifications;
+        public IReadOnlyCollection<Event> Notifications => _notifications?.AsReadOnly();
+
+        public void AddEvent(Event obj)
+        {
+            _notifications = _notifications ?? new List<Event>();
+            _notifications.Add(obj);
+        }
+
+        public void RemoveEvent(Event eventItem)
+        {
+            _notifications?.Remove(eventItem);
+        }
+
+        public void ClearEvent()
+        {
+            _notifications.Clear();
+        }
+
+        #region Comparisons
         public override bool Equals(object obj)
         {
             var compareTo = obj as Entity;
@@ -41,5 +68,7 @@ namespace Star.Core.DomainObjects
         {
             return $"{GetType().Name} [Id={Id}]";
         }
+
+        #endregion
     }
 }

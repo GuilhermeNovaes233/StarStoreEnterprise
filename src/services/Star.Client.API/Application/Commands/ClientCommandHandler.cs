@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using MediatR;
+using Star.Client.API.Application.Events;
 using Star.Client.API.Models;
 using Star.Core.Messages;
 using System.Threading;
@@ -30,6 +31,8 @@ namespace Star.Client.API.Application.Commands
             }
 
             _clientRepository.Add(client);
+
+            client.AddEvent(new RegisteredClientEvent(message.Id, message.Name, message.Email, message.Cpf));
 
             return await SaveChangesAsync(_clientRepository.UnitOfWork);
         }

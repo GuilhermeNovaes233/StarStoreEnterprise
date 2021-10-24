@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Star.Client.API.Application.Commands;
+using Star.Client.API.Application.Events;
 using Star.Client.API.Data;
 using Star.Client.API.Data.Repository;
 using Star.Client.API.Models;
@@ -15,6 +16,8 @@ namespace Star.Client.API.Configuration
         {
             services.AddScoped<IMediatorHandler, MediatorHandler>();
             services.AddScoped<IRequestHandler<RegisterClientCommand, ValidationResult>, ClientCommandHandler>();
+
+            services.AddScoped<INotificationHandler<RegisteredClientEvent>, ClientEventHandler>();
 
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<ClientContext>();
