@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Star.Catalog.API.Models;
+using Star.WebApi.Core.Controllers;
 using Star.WebApi.Core.Identity;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace Star.Catalog.API.Controllers
 {
-    [ApiController]
     [Authorize]
-    public class CatalogController : Controller
+    public class CatalogController : BaseController
     {
         private readonly IProductRepository _productRepository;
 

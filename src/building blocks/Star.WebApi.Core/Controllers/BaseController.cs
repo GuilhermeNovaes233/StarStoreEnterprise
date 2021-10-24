@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Star.Identity.API.Controllers
+namespace Star.WebApi.Core.Controllers
 {
     [ApiController]
     public abstract class BaseController : Controller
