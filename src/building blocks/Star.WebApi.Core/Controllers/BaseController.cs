@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Star.WebApi.Core.Controllers
 {
@@ -27,6 +25,16 @@ namespace Star.WebApi.Core.Controllers
         {
             var errors = modelState.Values.SelectMany(e => e.Errors);
             foreach (var error in errors)
+            {
+                AddErrorProcessing(error.ErrorMessage);
+            }
+
+            return CustomResponse();
+        }
+
+        protected ActionResult CustomResponse(ValidationResult validationResult)
+        {
+            foreach (var error in validationResult.Errors)
             {
                 AddErrorProcessing(error.ErrorMessage);
             }
