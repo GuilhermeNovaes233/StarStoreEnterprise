@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using EasyNetQ;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Star.Core.Messages.Integration;
 using Star.Identity.API.Models;
 using Star.WebApi.Core.Controllers;
 using Star.WebApi.Core.Identity;
@@ -22,10 +24,15 @@ namespace Star.Identity.API.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
 
+        private IBus _bus;
+
         public AuthController(SignInManager<IdentityUser> signInManager,
                               UserManager<IdentityUser> userManager,
-                              IOptions<AppSettings> appSettings)
+                              IOptions<AppSettings> appSettings,
+                              IBus bus)
         {
+            _bus = bus;
+
             _signInManager = signInManager;
             _userManager = userManager;
             _appSettings = appSettings.Value;
@@ -47,6 +54,8 @@ namespace Star.Identity.API.Controllers
 
             if (result.Succeeded)
             {
+                var success = await RegisterClient(userRegister);
+
                 return CustomResponse(await GenerateJwt(userRegister.Email));
             }
 
@@ -56,6 +65,19 @@ namespace Star.Identity.API.Controllers
             }
 
             return CustomResponse();
+        }
+
+        private async Task<ResponseMessage> RegisterClient(UserRegister userRegister)
+        {
+            var user = await _userManager.FindByEmailAsync(userRegister.Email);
+            var userRegistered = new UserRegisteredIntegrationEvent(
+                Guid.Parse(user.Id), userRegister.Name, userRegister.Email, userRegister.Cpf);
+
+            _bus = RabbitHutch.CreateBus("host=localhost:5672");
+
+            var success = await _bus.RequestAsync<UserRegisteredIntegrationEvent, ResponseMessage>(userRegistered);
+
+            return success;
         }
 
         [HttpPost("authenticate")]
