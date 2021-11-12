@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FluentValidation.Results;
 
 namespace Star.Core.Messages.Integration
 {

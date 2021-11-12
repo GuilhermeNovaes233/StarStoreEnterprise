@@ -6,6 +6,7 @@ using Star.Client.API.Application.Events;
 using Star.Client.API.Data;
 using Star.Client.API.Data.Repository;
 using Star.Client.API.Models;
+using Star.Client.API.Services;
 using Star.Core.Mediator;
 
 namespace Star.Client.API.Configuration
@@ -21,6 +22,9 @@ namespace Star.Client.API.Configuration
 
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<ClientContext>();
+
+
+            services.AddHostedService<RegisterClientIntegrationHandler>();
         }
     }
 }

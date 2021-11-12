@@ -28,11 +28,8 @@ namespace Star.Identity.API.Controllers
 
         public AuthController(SignInManager<IdentityUser> signInManager,
                               UserManager<IdentityUser> userManager,
-                              IOptions<AppSettings> appSettings,
-                              IBus bus)
+                              IOptions<AppSettings> appSettings)
         {
-            _bus = bus;
-
             _signInManager = signInManager;
             _userManager = userManager;
             _appSettings = appSettings.Value;
