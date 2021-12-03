@@ -53,7 +53,11 @@ namespace Star.Identity.API.Controllers
             if (result.Succeeded)
             {
                 var clientResult = await RegisterClient(userRegister);
-
+                if (!clientResult.ValidationResult.IsValid)
+                {
+                    await _userManager.DeleteAsync(user);
+                    return CustomResponse(clientResult.ValidationResult);
+                }
 
                 return CustomResponse(await GenerateJwt(userRegister.Email));
             }
@@ -166,9 +170,15 @@ namespace Star.Identity.API.Controllers
             var userRegistered = new UserRegisteredIntegrationEvent(
                 Guid.Parse(user.Id), userRegister.Name, userRegister.Email, userRegister.Cpf);
 
-            var success = await _bus.RequestAsync<UserRegisteredIntegrationEvent, ResponseMessage>(userRegistered);
-
-            return success;
+            try
+            {
+                return  await _bus.RequestAsync<UserRegisteredIntegrationEvent, ResponseMessage>(userRegistered);
+            }
+            catch
+            {
+                await _userManager.DeleteAsync(user);
+                throw;
+            }
         }
     }
 }
