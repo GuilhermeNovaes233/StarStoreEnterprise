@@ -30,6 +30,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\building blocks\Star.Core\Star.Core.csproj" />
+	  <ProjectReference Include="..\..\building blocks\Star.MessageBus\Star.MessageBus\Star.MessageBus.csproj" />
 	  <ProjectReference Include="..\..\building blocks\Star.WebApi.Core\Star.WebApi.Core.csproj" />
 	</ItemGroup>
 
