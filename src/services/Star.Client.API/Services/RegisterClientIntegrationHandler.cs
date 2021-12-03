@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Star.Client.API.Application.Commands;
 using Star.Core.Mediator;
 using Star.Core.Messages.Integration;
+using Star.MessageBus;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,18 +14,17 @@ namespace Star.Client.API.Services
 {
     public class RegisterClientIntegrationHandler : BackgroundService
     {
-        private IBus _bus;
+        private readonly IMessageBus _bus;
         private readonly IServiceProvider _serviceProvider;
 
-        public RegisterClientIntegrationHandler(IServiceProvider serviceProvider)
+        public RegisterClientIntegrationHandler(IServiceProvider serviceProvider, IMessageBus bus)
         {
             _serviceProvider = serviceProvider;
+            _bus = bus;
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _bus = RabbitHutch.CreateBus("host=localhost:5672");
-
             _bus.RespondAsync<UserRegisteredIntegrationEvent, ResponseMessage>(async request =>
                 await RegisterClient(request));
 
@@ -37,7 +37,6 @@ namespace Star.Client.API.Services
 
             ValidationResult success;
 
-            //Service locator
             using (var scope = _serviceProvider.CreateScope())
             {
                 var mediator = scope.ServiceProvider.GetRequiredService<IMediatorHandler>();

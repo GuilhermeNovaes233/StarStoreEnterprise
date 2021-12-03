@@ -1,10 +1,10 @@
-﻿using EasyNetQ;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Star.Core.Messages.Integration;
 using Star.Identity.API.Models;
+using Star.MessageBus;
 using Star.WebApi.Core.Controllers;
 using Star.WebApi.Core.Identity;
 using System;
@@ -23,16 +23,17 @@ namespace Star.Identity.API.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
-
-        private IBus _bus;
+        private readonly IMessageBus _bus;
 
         public AuthController(SignInManager<IdentityUser> signInManager,
                               UserManager<IdentityUser> userManager,
-                              IOptions<AppSettings> appSettings)
+                              IOptions<AppSettings> appSettings,
+                              IMessageBus bus)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _appSettings = appSettings.Value;
+            _bus = bus;
         }
 
         [HttpPost("new-account")]
@@ -51,7 +52,8 @@ namespace Star.Identity.API.Controllers
 
             if (result.Succeeded)
             {
-                var success = await RegisterClient(userRegister);
+                var clientResult = await RegisterClient(userRegister);
+
 
                 return CustomResponse(await GenerateJwt(userRegister.Email));
             }
@@ -64,18 +66,6 @@ namespace Star.Identity.API.Controllers
             return CustomResponse();
         }
 
-        private async Task<ResponseMessage> RegisterClient(UserRegister userRegister)
-        {
-            var user = await _userManager.FindByEmailAsync(userRegister.Email);
-            var userRegistered = new UserRegisteredIntegrationEvent(
-                Guid.Parse(user.Id), userRegister.Name, userRegister.Email, userRegister.Cpf);
-
-            _bus = RabbitHutch.CreateBus("host=localhost:5672");
-
-            var success = await _bus.RequestAsync<UserRegisteredIntegrationEvent, ResponseMessage>(userRegistered);
-
-            return success;
-        }
 
         [HttpPost("authenticate")]
         public async Task<ActionResult> Login(UserLogin userLogin)
@@ -169,5 +159,16 @@ namespace Star.Identity.API.Controllers
         }
 
         private static long ToUnixEpochDate(DateTime date) => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
+
+        private async Task<ResponseMessage> RegisterClient(UserRegister userRegister)
+        {
+            var user = await _userManager.FindByEmailAsync(userRegister.Email);
+            var userRegistered = new UserRegisteredIntegrationEvent(
+                Guid.Parse(user.Id), userRegister.Name, userRegister.Email, userRegister.Cpf);
+
+            var success = await _bus.RequestAsync<UserRegisteredIntegrationEvent, ResponseMessage>(userRegistered);
+
+            return success;
+        }
     }
 }
