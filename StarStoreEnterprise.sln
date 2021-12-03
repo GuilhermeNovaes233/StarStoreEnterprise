@@ -45,7 +45,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Star.Payment.API", "src\ser
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B4297606-9ADF-4B70-9B85-A2BF8B3EFCC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Star.WebApi.Core", "src\building blocks\Star.WebApi.Core\Star.WebApi.Core.csproj", "{7A49F130-9C58-4BE0-86F5-608182E67E4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Star.WebApi.Core", "src\building blocks\Star.WebApi.Core\Star.WebApi.Core.csproj", "{7A49F130-9C58-4BE0-86F5-608182E67E4D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MessageBus", "MessageBus", "{0E24063F-01C1-4A4F-AD34-C803E10742F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Star.MessageBus", "src\building blocks\Star.MessageBus\Star.MessageBus\Star.MessageBus.csproj", "{A3B020D8-549F-48EB-BDFB-6160110619FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +93,10 @@ Global
 		{7A49F130-9C58-4BE0-86F5-608182E67E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A49F130-9C58-4BE0-86F5-608182E67E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A49F130-9C58-4BE0-86F5-608182E67E4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3B020D8-549F-48EB-BDFB-6160110619FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3B020D8-549F-48EB-BDFB-6160110619FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3B020D8-549F-48EB-BDFB-6160110619FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3B020D8-549F-48EB-BDFB-6160110619FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +123,8 @@ Global
 		{A732FE1E-C587-46D8-8CC4-0E7B201ECAA1} = {338A85E7-E253-4304-8AED-24A0A7F5E770}
 		{B4297606-9ADF-4B70-9B85-A2BF8B3EFCC0} = {6A310622-BD94-4326-BBF3-919FF8F358C0}
 		{7A49F130-9C58-4BE0-86F5-608182E67E4D} = {B4297606-9ADF-4B70-9B85-A2BF8B3EFCC0}
+		{0E24063F-01C1-4A4F-AD34-C803E10742F1} = {6A310622-BD94-4326-BBF3-919FF8F358C0}
+		{A3B020D8-549F-48EB-BDFB-6160110619FE} = {0E24063F-01C1-4A4F-AD34-C803E10742F1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {770E54FE-1C37-4BDA-8500-E4EBB1DA1BD0}
