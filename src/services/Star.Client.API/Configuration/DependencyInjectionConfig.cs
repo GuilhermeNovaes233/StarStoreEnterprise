@@ -22,9 +22,6 @@ namespace Star.Client.API.Configuration
 
             services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<ClientContext>();
-
-
-            services.AddHostedService<RegisterClientIntegrationHandler>();
         }
     }
 }

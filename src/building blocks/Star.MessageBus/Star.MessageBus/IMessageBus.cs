@@ -1,7 +1,7 @@
-﻿using EasyNetQ;
-using Star.Core.Messages.Integration;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using EasyNetQ;
+using Star.Core.Messages.Integration;
 
 namespace Star.MessageBus
 {

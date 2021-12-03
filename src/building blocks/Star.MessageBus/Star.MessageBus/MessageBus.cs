@@ -1,13 +1,13 @@
-﻿using EasyNetQ;
+﻿using System;
+using System.Threading.Tasks;
+using EasyNetQ;
+using Star.Core.Messages.Integration;
 using Polly;
 using RabbitMQ.Client.Exceptions;
-using Star.Core.Messages.Integration;
-using System;
-using System.Threading.Tasks;
 
 namespace Star.MessageBus
 {
-    public class MessageBus
+    public class MessageBus : IMessageBus
     {
         private IBus _bus;
         private IAdvancedBus _advancedBus;
