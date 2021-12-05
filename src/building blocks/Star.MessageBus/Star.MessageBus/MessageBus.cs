@@ -11,7 +11,6 @@ namespace Star.MessageBus
     {
         private IBus _bus;
         private IAdvancedBus _advancedBus;
-
         private readonly string _connectionString;
 
         public MessageBus(string connectionString)

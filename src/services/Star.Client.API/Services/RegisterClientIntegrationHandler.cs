@@ -1,5 +1,4 @@
-﻿using EasyNetQ;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Star.Client.API.Application.Commands;
@@ -23,12 +22,23 @@ namespace Star.Client.API.Services
             _bus = bus;
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        private void SetResponder()
         {
             _bus.RespondAsync<UserRegisteredIntegrationEvent, ResponseMessage>(async request =>
-                await RegisterClient(request));
+               await RegisterClient(request));
 
+            _bus.AdvancedBus.Connected += OnConnect;
+        }
+
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            SetResponder();
             return Task.CompletedTask;
+        }
+
+        private void OnConnect(object s, EventArgs e)
+        {
+            SetResponder();
         }
 
         private async Task<ResponseMessage> RegisterClient(UserRegisteredIntegrationEvent message)
