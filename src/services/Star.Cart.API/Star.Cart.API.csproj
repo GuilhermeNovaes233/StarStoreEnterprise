@@ -26,9 +26,4 @@
     <ProjectReference Include="..\..\web\Star.WebApp.MVC\Star.WebApp.MVC.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Model\" />
-  </ItemGroup>
-
 </Project>
