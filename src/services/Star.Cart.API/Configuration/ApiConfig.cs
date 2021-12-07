@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Star.Cart.API.Data;
 using Star.WebApi.Core.Identity;
 
 namespace Star.Cart.API.Configuration
@@ -11,13 +13,19 @@ namespace Star.Cart.API.Configuration
     {
         public static void AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddDbContext<CartContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllers();
 
-            services.AddCors(options => {
-                options.AddPolicy("Total", builder =>
-                builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader());
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Total",
+                    builder =>
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader());
             });
         }
 
@@ -26,12 +34,13 @@ namespace Star.Cart.API.Configuration
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwaggerConfiguration();
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("Total");
 
             app.UseAuthConfiguration();
 

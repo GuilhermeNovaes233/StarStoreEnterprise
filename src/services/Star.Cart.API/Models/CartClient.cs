@@ -11,7 +11,6 @@ namespace Star.Cart.API.Models
         {
             Id = Guid.NewGuid();
             ClientId = clientId;
-            Items = new List<CartItem>();
         }
 
         public Guid Id { get; set; }
