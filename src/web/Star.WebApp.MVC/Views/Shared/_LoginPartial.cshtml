@@ -1,6 +1,7 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using Star.WebApi.Core.User
 @using Star.WebApp.MVC.Extensions
-@inject IUser AppUser
+
+@inject IAspNetUser AppUser
 
 @if (AppUser.IsAuthenticate())
 {

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Polly.Extensions.Http;
 using Polly.Retry;
+using Star.WebApi.Core.User;
 using Star.WebApp.MVC.Extensions;
 using Star.WebApp.MVC.Extensions.Annotations;
 using Star.WebApp.MVC.Services;
@@ -43,7 +44,7 @@ namespace Star.WebApp.MVC.Configuration
             //    .AddTypedClient(Refit.RestService.For<ICatalogServiceRefit>);
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IUser, AspNetUser>();
+            services.AddScoped<IAspNetUser, AspNetUser>();
         }
     }
 
