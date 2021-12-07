@@ -1,15 +1,37 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Star.WebApp.MVC.Controllers;
+using Star.Cart.API.Models;
+using System.Threading.Tasks;
+using Star.WebApi.Core.Controllers;
+using System;
 
 namespace Star.Cart.API.Controllers
 {
     [Authorize]
-    public class CartController : MainController
+    public class CartController : BaseController
     {
-        public IActionResult Index()
+       [HttpGet("cart")]
+       public async Task<CartItem> GetCart()
+       {
+            return null;
+       }
+
+        [HttpPost("cart")]
+        public async Task<CartItem> AddItemCart()
         {
-            return View();
+            return null;
+        }
+
+        [HttpPut("cart/{productId}")]
+        public async Task<CartItem> UpdateItemCart(Guid productId, CartItem item)
+        {
+            return null;
+        }
+
+        [HttpDelete("cart/{productId}")]
+        public async Task<IActionResult> DeleteItemCart(Guid productId)
+        {
+            return null;
         }
     }
 }
